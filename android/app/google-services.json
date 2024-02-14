@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567772181243",
+    "project_id": "reservia-ce028",
+    "storage_bucket": "reservia-ce028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567772181243:android:8088993bc56543370bb65e",
+        "android_client_info": {
+          "package_name": "com.example.reservia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJf3I1u49cpKbrQiemIJnYKlsfTDa0jEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
