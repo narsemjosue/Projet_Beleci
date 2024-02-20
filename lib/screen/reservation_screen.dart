@@ -14,9 +14,7 @@ class ReservationScreen extends StatelessWidget {
         child:  Column(
           children: [
             Reservation(),
-            Reservation(),
-            Reservation(),
-            Reservation(),
+            
           ],
         ),
       )

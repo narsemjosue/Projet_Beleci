@@ -18,24 +18,26 @@ class Reservation extends StatelessWidget {
               
               decoration: BoxDecoration(
                 color: const Color.fromARGB(106, 198, 196, 196),
-                borderRadius: BorderRadius.circular(20)
+                // borderRadius: BorderRadius.circular(20)
               ),
               child:  Padding(
-                padding:  const EdgeInsets.all(20),
+                padding:  const EdgeInsets.all(0),
                 child: Row(
                     //  crossAxisAlignment: CrossAxisAlignment.baseline,
                     children:[
                       Container(
-                        height: 50,
-                        width: 50,
+                        height: 100,
+                        width: 100,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: const DecorationImage(image: AssetImage('assets/images/img_0.png',),
+                          borderRadius: BorderRadius.circular(0),
+                          image: const DecorationImage(image:NetworkImage('https://th.bing.com/th/id/R.b769ff89b218e1c012cd03acd4e03779?rik=tk9MV4qM7ZkQUw&pid=ImgRaw&r=0'),
+                          fit: BoxFit.fitHeight
                         )
                         ),
                       ),
-                      const SizedBox(width: 20,),
+                      const SizedBox(width: 40,),
                       const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Rav4 Toyota",style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                           Text("Du 12-01-2024",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),

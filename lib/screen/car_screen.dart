@@ -34,7 +34,22 @@ class CarScreen extends StatelessWidget {
                       width: size.width*0.6,
                       decoration: BoxDecoration(
                      color: Styles.primaryColor,
-                      borderRadius: BorderRadius.circular(24),),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Styles.primaryColor,
+                          offset: Offset(4.0, 4.0),
+                          blurRadius: 15,
+                          spreadRadius: 1
+                        ),
+                         BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(-4.0, -4.0),
+                          blurRadius: 15,
+                          spreadRadius: 1
+                        )
+                      ]
+                      ),
                       
                       child:InkWell(
                          onTap: (){

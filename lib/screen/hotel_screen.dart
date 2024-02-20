@@ -34,6 +34,7 @@ const HotelScreen({super.key,});
                       
                       child:InkWell(
                          onTap: (){
+                          
                          var mark = hot['image'];
                           Navigator.of(context).push(MaterialPageRoute(builder: (ctx){return  DetailHotel(urlImage: mark,nom: hot['nom'],clim: hot['clim'],internet: hot["internet"],nbrLits: hot['nbrLits'],tv: hot['tv'],type: hot['type'],localisation: hot['localisation'],);}));
                          },

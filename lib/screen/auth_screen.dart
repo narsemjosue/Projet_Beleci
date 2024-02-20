@@ -88,16 +88,8 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 30,
-                  bottom: 20,
-                  left: 20,
-                  right: 20
-                ),
-                width: 200,
-                child: Image.asset('assets/images/img_0.png'),
-              ),
+              const SizedBox(height: 100,),
+              Text(_isLogin? "Connexion" : "Inscription", style:  TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 113, 2, 102)),),
                 Card(
                 margin: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
@@ -114,7 +106,7 @@ class _AuthScreenState extends State<AuthScreen> {
                            },),
                           TextFormField(
                             decoration:  const InputDecoration(
-                              labelText: 'Email Address'
+                              labelText: 'Adresse Email'
                             ),
                             keyboardType: TextInputType.emailAddress,
                             autocorrect: false,
@@ -132,7 +124,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           if(!_isLogin)
                             TextFormField(
                               decoration: const InputDecoration(
-                                labelText: 'Username'
+                                labelText: "Nom d'utilisateur"
                               ),
                               enableSuggestions: false,
                               validator: (value){
@@ -147,7 +139,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                           TextFormField(
                             decoration:  const InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Mot de passe',
                             ),
                             // keyboardType: TextInputType.visiblePassword,
                             obscureText: true,
@@ -170,7 +162,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color.fromARGB(255, 246, 242, 242),
                               ),
-                              child:  Text(_isLogin? "Login" : "Signup")
+                              child:  Text(_isLogin? "Connexion" : "Inscription")
                             ),
                           if(!_isAutheticating)
                             TextButton(onPressed: (){
@@ -178,7 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 _isLogin = !_isLogin;
                               });
                             }, 
-                              child: Text(_isLogin? 'Create an account' : 'I already have an account.')
+                              child: Text(_isLogin? "S'inscrire" : "J'ai déja un compte. Se connecter")
                             ),
                         ],
                       ),

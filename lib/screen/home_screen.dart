@@ -63,39 +63,23 @@ class HomeScreen extends StatelessWidget {
           SingleChildScrollView(
             child: Column(children: [
               const SizedBox(height: 15,),
+              Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const AppDoubleTextWidget(bigText: 'Hotels', smalText: 'View all'),
+              ),
+              const SizedBox(height: 15,),
+              const SizedBox(
+                    height:370,
+                    child: HotelScreen()),
+                    Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                     child: const AppDoubleTextWidget(bigText: 'Cars', smalText: 'View all'),
+               ),
+               const SizedBox(height: 15,),
+                     const SizedBox(
+                    height:370,
+                    child: CarScreen()),
           const SizedBox(height: 15,),
-          StreamBuilder(
-          stream:FirebaseAuth.instance.authStateChanges() , 
-          builder: (ctx, snapshot){
-            if(ConnectionState.waiting == true){
-              return const Center(child:  Text('Nothing here!'));
-
-            }
-            if(!snapshot.hasData){
-              return const Center(child:  Text('Nothing here!'));
-            }
-            return Column(
-              children: [
-                  Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const AppDoubleTextWidget(bigText: 'Hotels', smalText: 'View all'),
-          ),
-          const SizedBox(height: 15,),
-          SizedBox(
-            height:370,
-            child: HotelScreen()),
-            Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-             child: const AppDoubleTextWidget(bigText: 'Cars', smalText: 'View all'),
-           ),
-           const SizedBox(height: 15,),
-             const SizedBox(
-            height:370,
-            child: CarScreen()),
-              ],
-            );
-          },
-        ),
           
            ]
            ),
