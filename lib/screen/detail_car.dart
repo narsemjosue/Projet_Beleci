@@ -1,14 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:reservia/screen/reservation_screen.dart';
 
 class DetailCar extends StatefulWidget {
-   DetailCar({super.key, required this.marque, required this.prix, required this.image, required this.assurance, required this.gprs});
+   DetailCar({super.key, required this.marque, required this.prix, required this.image, required this.assurance, required this.gprs, required this.identifiant});
   final marque;
   var prix;
   bool assurance;
   bool gprs;
   var image;
-
+  var identifiant;
   
 
   @override
@@ -43,6 +46,20 @@ class _DetailCarState extends State<DetailCar> {
     setState(() {
       _selectedDateEnd = pickedDate;
     });
+  }
+
+  void _submit(){
+      final user = FirebaseAuth.instance.currentUser!;
+      FirebaseFirestore.instance.collection('reservationCar').add({
+          'idUser': user.uid,
+          'dated': _selectedDateStart,
+          'datef':_selectedDateEnd,
+          'idHotel':widget.identifiant,
+        });
+
+        Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+          return ReservationScreen();
+        }));
   }
 
   @override
@@ -158,7 +175,7 @@ class _DetailCarState extends State<DetailCar> {
             ),
             Padding(
               padding: const EdgeInsets.only(left:110),
-              child: ElevatedButton(onPressed: (){}, child: const Text("Reserver", style:TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),),
+              child: ElevatedButton(onPressed: _submit, child: const Text("Reserver", style:TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),),
             ),
              const SizedBox(
                         height: 15,

@@ -4,8 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:reservia/utils/app_style.dart';
 
 class DetailHotel extends StatefulWidget {
- DetailHotel({super.key, required this.urlImage,required this.nom, required this.clim, required this.internet, required this.nbrLits, required this.tv, required this.type, required this.localisation });
+ DetailHotel({super.key, 
+ required this.urlImage,
+ required this.nom,
+required this.clim, 
+required this.internet, 
+required this.nbrLits, 
+required this.tv, 
+required this.type, 
+required this.localisation, 
+required this.identifiant
+ });
  var urlImage;
+ var identifiant;
  var nom;
  var type;
  var nbrLits;
@@ -40,7 +51,7 @@ class _DetailHotelState extends State<DetailHotel> {
 
     final pickedDate = await showDatePicker(
         context: context,
-        initialDate: now,
+        initialDate: _selectedDateStart,
         firstDate: now,
         lastDate: lastDate);
     setState(() {
@@ -50,19 +61,37 @@ class _DetailHotelState extends State<DetailHotel> {
 
   void _submit(){
       final user = FirebaseAuth.instance.currentUser!;
-      FirebaseFirestore.instance.collection('reservation').add({
-          'image': "urlImage",
-          'nom': '_enteredName',
-          'prix': '_enteredPrice',
-          'etoile': '_enteredStar',
-          'type': 'type',
-          'nbrLit':'imageUrl',
-          'localisation':'_localisation',
-          'clim':'ch1',
-          'internet':'ch2',
-          'tv':'ch3',
-          'nbrLits':'_enteredLit'
+      FirebaseFirestore.instance.collection('reservationHotel').add({
+          'idUser': user.uid,
+          'dated': _selectedDateStart,
+          'datef':_selectedDateEnd,
+          'urlImage': widget.urlImage,
+          'nom':widget.nom,
+          'type':widget.type,
+          'nbrLits':widget.nbrLits,
+          'localisation':widget.localisation,
+          'clim':widget.clim,
+          'internet':widget.internet,
+          'tv':widget.tv,
         });
+
+        // DocumentSnapshot? hotel;
+        //        FirebaseFirestore.instance
+        //                 .collection('hotel')
+        //                 .doc(widget.identifiant)
+        //                 .get()
+        //                 .then((value){ 
+        //                   hotel = value;
+        //                 });
+        //                var name =hotel!['hh'].toString(); 
+        //                print(name);
+
+        
+          //  print( );
+
+        // Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+        //   return ReservationScreen();
+        // }));
   }
 
   @override
@@ -101,23 +130,27 @@ class _DetailHotelState extends State<DetailHotel> {
               const SizedBox(
                 height: 5,
               ),
-              const Text("Type:",style: TextStyle(),),
-              Text("${widget.type}",style: const TextStyle(),),
-             
-             const  Text("Localisation:",style: TextStyle(),),
+              Row(children: [
+               const Text("Type:   ",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),),
+               Text("${widget.type}",style: const TextStyle(),),
+              ],),
+             const SizedBox(height: 3,),
+            Row(children: [
+               const  Text("Localisation:   ",style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),),
               Text("${widget.localisation}",style: const TextStyle(),),
-              
+              ],),
+             const SizedBox(height: 3,),
               Row(children: [
                const Text(
                 "Climatisation: ",
-                style: TextStyle(),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
               ),Text(
                 " ${widget.clim? 'Oui': 'Non'}",
                 style: const TextStyle(),
               ),
               ],),
              const SizedBox(
-                height: 10,
+                height: 3,
               ),
               Row(
                 children: [
@@ -131,46 +164,46 @@ class _DetailHotelState extends State<DetailHotel> {
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 3,
               ),
              Row(
               children: [
                  const Text(
                 "TV: ",
-                // style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
               ), Text(
                 "${widget.tv? 'Oui': 'Non'}",
-                // style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
               ),
               ],
              ),
-            //  const SizedBox(
-            //     height: 10,
-            //   ),
+          
               Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Date de début'),
-                          Text(_selectedDateStart == null
-                              ? 'No date selected'
-                              : _selectedDateStart!.day.toString() + '-' + _selectedDateStart!.month.toString() + '-' + _selectedDateStart!.year.toString()),
-                          IconButton(
-                              onPressed: _dataPickerStart,
-                              icon: const Icon(Icons.calendar_month))
-                        ],
-                      ),
-                      Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Date de fin'),
-                          Text(_selectedDateEnd == null
-                              ? 'No date selected'
-                              : _selectedDateEnd!.day.toString() + '-' + _selectedDateEnd!.month.toString() + '-' + _selectedDateEnd!.year.toString()),
-                          IconButton(
-                              onPressed: _dataPickerEnd,
-                              icon: const Icon(Icons.calendar_month))
-                        ],
-                      )
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Date de début',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    Text(_selectedDateStart == null
+                        ? 'No date selected'
+                        : _selectedDateStart!.day.toString() + '-' + _selectedDateStart!.month.toString() + '-' + _selectedDateStart!.year.toString(),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    IconButton(
+                        onPressed: _dataPickerStart,
+                        icon: const Icon(Icons.calendar_month),color: Color.fromARGB(255, 147, 9, 172))
+                  ],
+                ),
+                Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Date de fin',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    Text(_selectedDateEnd == null
+                        ? 'No date selected'
+                        : _selectedDateEnd!.day.toString() + '-' + _selectedDateEnd!.month.toString() + '-' + _selectedDateEnd!.year.toString(),
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    IconButton(
+                        onPressed: _dataPickerEnd,
+                        icon: const Icon(Icons.calendar_month),padding: EdgeInsets.all(0),color: Color.fromARGB(255, 147, 9, 172),)
+                  ],
+                )
              
              
                 ],

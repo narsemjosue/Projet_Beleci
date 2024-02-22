@@ -54,7 +54,8 @@ class CarScreen extends StatelessWidget {
                       child:InkWell(
                          onTap: (){
                          var mark = hot['marque'];
-                          Navigator.of(context).push(MaterialPageRoute(builder: (ctx){return   DetailCar(marque: mark,assurance: hot['assurance'],gprs: hot['gprs'],prix: hot['prix'],image: hot["image"],);}));
+                         var ident = loadCar[index].id;
+                          Navigator.of(context).push(MaterialPageRoute(builder: (ctx){return   DetailCar(marque: mark,assurance: hot['assurance'],gprs: hot['gprs'],prix: hot['prix'],image: hot["image"],identifiant: ident,);}));
                          },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

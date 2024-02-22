@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reservia/utils/app_style.dart';
 
 class Building_Screen extends StatelessWidget {
   const Building_Screen({super.key});
@@ -7,10 +6,16 @@ class Building_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-                    backgroundColor: Styles.bgColor,
-                    body: Center(
-                      child: Text('Page en construction', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300),),
-                    ),
-                  );
+      backgroundColor: Colors.white,
+      body: Center(
+          child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(
+                        'https://cdn.website-editor.net/e8f5cd6e90bc4db8be5abdce2c648e09/dms3rep/multi/Page+en+cours+de+construction.PNG')),
+              ))),
+    );
   }
 }

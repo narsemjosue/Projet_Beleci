@@ -15,6 +15,7 @@ const HotelScreen({super.key,});
           if(loadCar.isEmpty){
             return const Center(child:  Text('Nothing here!'));
           }
+         
           return ListView.builder(
             scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.only(bottom: 40, left: 13, right: 13),
@@ -34,9 +35,9 @@ const HotelScreen({super.key,});
                       
                       child:InkWell(
                          onTap: (){
-                          
+                          var ident = loadCar[index].id;
                          var mark = hot['image'];
-                          Navigator.of(context).push(MaterialPageRoute(builder: (ctx){return  DetailHotel(urlImage: mark,nom: hot['nom'],clim: hot['clim'],internet: hot["internet"],nbrLits: hot['nbrLits'],tv: hot['tv'],type: hot['type'],localisation: hot['localisation'],);}));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (ctx){return  DetailHotel(urlImage: mark,nom: hot['nom'],clim: hot['clim'],internet: hot["internet"],nbrLits: hot['nbrLits'],tv: hot['tv'],type: hot['type'],localisation: hot['localisation'],identifiant: ident,);}));
                          },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

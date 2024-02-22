@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:reservia/screen/add_screen.dart';
@@ -12,35 +13,46 @@ class ContainProfil extends StatefulWidget {
 }
 
 class _ContainProfilState extends State<ContainProfil> {
-  void setupPushNotifications() async {
-    // final fcm = FirebaseMessaging.instance;
-    //  await fcm.requestPermission();
-    // //  final token = await fcm.getToken();
-    // // print(token);
-    // fcm.subscribeToTopic('chat');
-  }
-  @override
-  void initState() {
-    super.initState();
-
-    setupPushNotifications();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
-    final authenticatedUser = FirebaseAuth.instance.currentUser!;
+    final authenticatedUser = FirebaseAuth.instance.currentUser!.uid;
+    String imageurl = '';
 
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Styles.bgColor,
-          title: Text("Narsem Josué"
-            // authenticatedUser.email.toString()
-            ),
+          title: Container(
+            height: 50,
+            color: Colors.amber,
+            child: StreamBuilder(
+            
+                  stream: FirebaseFirestore.instance.collection('users').snapshots(),
+                  builder: (ctx, carSnapshots) {
+                    final loadCar = carSnapshots.data!.docs;
+                    return ListView.builder(
+               itemCount: loadCar.length,
+               itemBuilder: (ctx, index) {
+                final hot = loadCar[index].data();
+                if(hot['idUser'] == authenticatedUser){
+                  imageurl = hot['image_url'];
+                  print(hot['image_url']);
+                 return Text(hot['username'],style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
+                }
+              
+                }
+                
+                
+                    );}
+                    
+                    ),
+          ),
           actions: [
             IconButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
-                  print(authenticatedUser.uid);
+                  // print(authenticatedUser.uid);
                 },
                 icon: Icon(
                   Icons.exit_to_app,
@@ -56,13 +68,14 @@ class _ContainProfilState extends State<ContainProfil> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                
                 margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 width: 150,
                 height: 150,
                 decoration: BoxDecoration(
                     color: Styles.bgColor,
                     borderRadius: BorderRadius.circular(100),
-                    image:const DecorationImage(image:NetworkImage('https://scontent-fra5-1.xx.fbcdn.net/v/t1.6435-9/125275584_1271472433230869_5278274844304975916_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=be3454&_nc_ohc=EaTqB5hgHj0AX8ZRU1I&_nc_ht=scontent-fra5-1.xx&oh=00_AfB6DXITlQ_HBW9XCnFOIUiBCbFGG87QpLDhiYT0kCfwNw&oe=65FAA6D9'), fit: BoxFit.fitWidth ),
+                    image: DecorationImage(image:NetworkImage(imageurl), fit: BoxFit.contain ),
                     ),
               ),
               const SizedBox(height: 30,),

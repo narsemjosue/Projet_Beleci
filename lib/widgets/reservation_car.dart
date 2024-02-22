@@ -1,23 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
-class Reservation extends StatelessWidget {
-  const Reservation({super.key});
+class ReservationCarScreen extends StatelessWidget {
+  const ReservationCarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20,),
-          Dismissible(
+    return 
+    Container(
+      height: 250,
+      child: StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('reservationCar').snapshots(),
+      builder: (ctx, carSnapshots) {
+        final loadCar = carSnapshots.data!.docs;
+        return ListView.builder(
+           
+             itemCount: loadCar.length,
+             itemBuilder: (ctx, index) {
+              final hot = loadCar[index].data();
+             
+            
+               return Dismissible(
+            onDismissed: (d){
+              
+            },
             key: GlobalKey(),
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
               width: double.infinity,
               
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(106, 198, 196, 196),
+              decoration: const BoxDecoration(
+                color:  Color.fromARGB(106, 198, 196, 196),
                 // borderRadius: BorderRadius.circular(20)
               ),
               child:  Padding(
@@ -30,18 +43,18 @@ class Reservation extends StatelessWidget {
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(0),
-                          image: const DecorationImage(image:NetworkImage('https://th.bing.com/th/id/R.b769ff89b218e1c012cd03acd4e03779?rik=tk9MV4qM7ZkQUw&pid=ImgRaw&r=0'),
+                          image:  DecorationImage(image:NetworkImage(hot['urlImage']),
                           fit: BoxFit.fitHeight
                         )
                         ),
                       ),
                       const SizedBox(width: 40,),
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Rav4 Toyota",style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                          Text("Du 12-01-2024",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-                          Text("Au 18-01-2024",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+                          Text(hot['nom'].toString(),style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text("" ,style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+                          Text('',style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
                           Text("15000f/jour",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w600),textAlign: TextAlign.start,),
                         ],
                       )
@@ -49,8 +62,13 @@ class Reservation extends StatelessWidget {
                   ),
               ),
             ),
-          ),
-        ],
-      );
-  }
+          );
+              }
+              
+              
+        );}
+        
+        ),
+    );
+  }  
 }
