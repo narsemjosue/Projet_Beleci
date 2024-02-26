@@ -24,34 +24,34 @@ class _AddScreenCarState extends State<AddScreenCar> {
   bool ch2 = false;
   bool ch3 = false;
   void _submit(){
-    //  setState(() {
-    //   _isAutheticating = true;
-    // });
-    // if(_form.currentState!.validate() && _selectedImage != null){
-    //   final user = FirebaseAuth.instance.currentUser!;
-    //   _form.currentState!.save();
+     setState(() {
+      _isAutheticating = true;
+    });
+    if(_form.currentState!.validate() && _selectedImage != null){
+      final user = FirebaseAuth.instance.currentUser!;
+      _form.currentState!.save();
        
-    //    final storageRef = FirebaseStorage.instance
-    //         .ref()
-    //         .child('user_images')
-    //         .child(_selectedImage.toString()+'.jpg');
-    //          storageRef.putFile(_selectedImage!);
-    //         final imageUrl =  storageRef.getDownloadURL();
+       final storageRef = FirebaseStorage.instance
+            .ref()
+            .child('user_images')
+            .child(_selectedImage.toString()+'.jpg');
+             storageRef.putFile(_selectedImage!);
+            final imageUrl =  storageRef.getDownloadURL();
       
-    //      FirebaseFirestore.instance.collection('car').add({
-    //       'idPaterner': user.uid,
-    //       'matricule': _enteredMatricule,
-    //       'marque': _enteredMark,
-    //       'prix': _enteredPrice,
-    //       'image':imageUrl,
-    //       'gprs':ch2,
-    //       'assurance':ch3,
-    //     });
+         FirebaseFirestore.instance.collection('car').add({
+          'idPaterner': user.uid,
+          'matricule': _enteredMatricule,
+          'marque': _enteredMark,
+          'prix': _enteredPrice,
+          'image':imageUrl,
+          'gprs':ch2,
+          'assurance':ch3,
+        });
       
        
-    //    Navigator.of(context).pop();
+       Navigator.of(context).pop();
    
-    // }
+    }
     
 print('tapped');
 

@@ -38,7 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
       });
       if(_isLogin){
         //log use in
-          final userCredentials = await _firebase.signInWithEmailAndPassword(
+           await _firebase.signInWithEmailAndPassword(
           email: _enteredEmail, password: _enteredPassword);
           // print(userCredentials);
           }
@@ -89,7 +89,7 @@ class _AuthScreenState extends State<AuthScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 100,),
-              Text(_isLogin? "Connexion" : "Inscription", style:  TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 113, 2, 102)),),
+              Text(_isLogin? "Connexion" : "Inscription", style:  const TextStyle(fontSize: 24, fontWeight: FontWeight.w400, color: Color.fromARGB(255, 113, 2, 102)),),
                 Card(
                 margin: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
@@ -160,7 +160,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ElevatedButton(
                               onPressed: _submit, 
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromARGB(255, 246, 242, 242),
+                                backgroundColor: const Color.fromARGB(255, 246, 242, 242),
                               ),
                               child:  Text(_isLogin? "Connexion" : "Inscription")
                             ),

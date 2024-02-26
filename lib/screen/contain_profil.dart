@@ -37,9 +37,10 @@ class _ContainProfilState extends State<ContainProfil> {
                 final hot = loadCar[index].data();
                 if(hot['idUser'] == authenticatedUser){
                   imageurl = hot['image_url'];
-                  print(hot['image_url']);
+                  // print(hot['image_url']);
                  return Text(hot['username'],style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
                 }
+                return null;
               
                 }
                 
@@ -80,52 +81,52 @@ class _ContainProfilState extends State<ContainProfil> {
               ),
               const SizedBox(height: 30,),
              Container(
-                color: Color.fromARGB(5, 89, 138, 244),
+                color: const Color.fromARGB(5, 89, 138, 244),
                 height: 300,
                 child:  ListView(children: [
                   Container(
                     height: 1,
                     color: Colors.grey,
                   ),
-                ListTile(leading: Icon(Icons.people),
-                  title: Text("Editer le Profil"), 
+                ListTile(leading: const Icon(Icons.people),
+                  title: const Text("Editer le Profil"), 
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                  return Building_Screen();
+                  return const Building_Screen();
                 })),
                 ),
                 Container(
                   height: 1,
                   color: Colors.grey,
-                ), ListTile(leading:Icon(Icons.question_answer_outlined),
-                    title:Text("Contacter le Service Clients"),
+                ), ListTile(leading:const Icon(Icons.question_answer_outlined),
+                    title:const Text("Contacter le Service Clients"),
                 
                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                  return Building_Screen();
+                  return const Building_Screen();
                 })),
                 ),
                 Container(
                   height: 1,
                   color: Colors.grey,
-                ), ListTile(title: Text("Devenir Partenaire"),
-                leading: Icon(Icons.handyman),
+                ), ListTile(title: const Text("Devenir Partenaire"),
+                leading: const Icon(Icons.handyman),
                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                  return Building_Screen();
+                  return const Building_Screen();
                 })),
                 ),
                 Container(
                   height: 1,
                   color: Colors.grey,
-                ), ListTile(title: Text("Parametres"),
-                leading: Icon(Icons.settings),
+                ), ListTile(title: const Text("Parametres"),
+                leading: const Icon(Icons.settings),
                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-                  return Building_Screen();
+                  return const Building_Screen();
                 })),
                 ),
                 Container(
                   height: 1,
                   color: Colors.grey,
-                ), ListTile(title: Text("Ajouter un Véhicule / Hébergement"),
-                leading: Icon(Icons.add),
+                ), ListTile(title: const Text("Ajouter un Véhicule / Hébergement"),
+                leading: const Icon(Icons.add),
                 onTap:  (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context){
                   return const AddScreen();
@@ -138,16 +139,6 @@ class _ContainProfilState extends State<ContainProfil> {
                 ),
              ]),
              ),
-              // const SizedBox(height: 50,),
-              // ElevatedButton.icon(onPressed: (){
-              //   Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              //     return const AddScreen();
-              //   }));
-              // },  
-              // label:  const Text("Ajouter un Véhicule / Hébergement"),
-              // icon: Icon(Icons.add),
-              // ),
-          
             ],
           ),
         ));

@@ -1,11 +1,14 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, duplicate_ignore
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:reservia/screen/reservation_screen.dart';
 
+// ignore: must_be_immutable
 class DetailCar extends StatefulWidget {
    DetailCar({super.key, required this.marque, required this.prix, required this.image, required this.assurance, required this.gprs, required this.identifiant});
+  // ignore: prefer_typing_uninitialized_variables
   final marque;
   var prix;
   bool assurance;
@@ -53,12 +56,16 @@ class _DetailCarState extends State<DetailCar> {
       FirebaseFirestore.instance.collection('reservationCar').add({
           'idUser': user.uid,
           'dated': _selectedDateStart,
-          'datef':_selectedDateEnd,
-          'idHotel':widget.identifiant,
+          'datef':_selectedDateEnd, 
+          'marque': widget.marque,
+          'prix':widget.prix,
+          'image':widget.image,
+          'gprs':widget.gprs,
+          'assurance':widget.identifiant,
         });
 
         Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-          return ReservationScreen();
+          return const ReservationScreen();
         }));
   }
 
@@ -68,7 +75,7 @@ class _DetailCarState extends State<DetailCar> {
       appBar: AppBar(
         title:  Text(
           widget.marque,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -92,7 +99,7 @@ class _DetailCarState extends State<DetailCar> {
             Card(
               margin: const EdgeInsets.all(20),
               child:  Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -148,10 +155,10 @@ class _DetailCarState extends State<DetailCar> {
                       Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Date de début'),
+                          const Text('Date de début'),
                           Text(_selectedDateStart == null
                               ? 'No date selected'
-                              : _selectedDateStart!.day.toString() + '-' + _selectedDateStart!.month.toString() + '-' + _selectedDateStart!.year.toString()),
+                              : '${_selectedDateStart!.day}-${_selectedDateStart!.month}-${_selectedDateStart!.year}'),
                           IconButton(
                               onPressed: _dataPickerStart,
                               icon: const Icon(Icons.calendar_month))
@@ -160,10 +167,10 @@ class _DetailCarState extends State<DetailCar> {
                       Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Date de fin'),
+                          const Text('Date de fin'),
                           Text(_selectedDateEnd == null
                               ? 'No date selected'
-                              : _selectedDateEnd!.day.toString() + '-' + _selectedDateEnd!.month.toString() + '-' + _selectedDateEnd!.year.toString()),
+                              : '${_selectedDateEnd!.day}-${_selectedDateEnd!.month}-${_selectedDateEnd!.year}'),
                           IconButton(
                               onPressed: _dataPickerEnd,
                               icon: const Icon(Icons.calendar_month))

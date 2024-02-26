@@ -1,8 +1,12 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable, duplicate_ignore
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:reservia/screen/reservation_screen.dart';
 import 'package:reservia/utils/app_style.dart';
 
+// ignore: duplicate_ignore
 class DetailHotel extends StatefulWidget {
  DetailHotel({super.key, 
  required this.urlImage,
@@ -15,6 +19,7 @@ required this.type,
 required this.localisation, 
 required this.identifiant
  });
+ // ignore: prefer_typing_uninitialized_variables
  var urlImage;
  var identifiant;
  var nom;
@@ -75,23 +80,10 @@ class _DetailHotelState extends State<DetailHotel> {
           'tv':widget.tv,
         });
 
-        // DocumentSnapshot? hotel;
-        //        FirebaseFirestore.instance
-        //                 .collection('hotel')
-        //                 .doc(widget.identifiant)
-        //                 .get()
-        //                 .then((value){ 
-        //                   hotel = value;
-        //                 });
-        //                var name =hotel!['hh'].toString(); 
-        //                print(name);
-
-        
-          //  print( );
-
-        // Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
-        //   return ReservationScreen();
-        // }));
+       
+        Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+          return const ReservationScreen();
+        }));
   }
 
   @override
@@ -158,7 +150,7 @@ class _DetailHotelState extends State<DetailHotel> {
                 "Internet: ",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
               ),Text(
-                "${widget.internet? 'Oui':'Non'}",
+                widget.internet? 'Oui':'Non',
                 // style:const TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
               ),
                 ],
@@ -172,8 +164,8 @@ class _DetailHotelState extends State<DetailHotel> {
                 "TV: ",
                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
               ), Text(
-                "${widget.tv? 'Oui': 'Non'}",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
+                widget.tv? 'Oui': 'Non',
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300)
               ),
               ],
              ),
@@ -181,27 +173,27 @@ class _DetailHotelState extends State<DetailHotel> {
               Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Date de début',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    const Text('Date de début',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
                     Text(_selectedDateStart == null
                         ? 'No date selected'
-                        : _selectedDateStart!.day.toString() + '-' + _selectedDateStart!.month.toString() + '-' + _selectedDateStart!.year.toString(),
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                        : '${_selectedDateStart!.day}-${_selectedDateStart!.month}-${_selectedDateStart!.year}',
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
                     IconButton(
                         onPressed: _dataPickerStart,
-                        icon: const Icon(Icons.calendar_month),color: Color.fromARGB(255, 147, 9, 172))
+                        icon: const Icon(Icons.calendar_month),color: const Color.fromARGB(255, 147, 9, 172))
                   ],
                 ),
                 Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Date de fin',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                    const Text('Date de fin',style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
                     Text(_selectedDateEnd == null
                         ? 'No date selected'
-                        : _selectedDateEnd!.day.toString() + '-' + _selectedDateEnd!.month.toString() + '-' + _selectedDateEnd!.year.toString(),
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
+                        : '${_selectedDateEnd!.day}-${_selectedDateEnd!.month}-${_selectedDateEnd!.year}',
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
                     IconButton(
                         onPressed: _dataPickerEnd,
-                        icon: const Icon(Icons.calendar_month),padding: EdgeInsets.all(0),color: Color.fromARGB(255, 147, 9, 172),)
+                        icon: const Icon(Icons.calendar_month),padding: const EdgeInsets.all(0),color: const Color.fromARGB(255, 147, 9, 172),)
                   ],
                 )
              

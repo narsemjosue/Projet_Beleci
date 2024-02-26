@@ -8,13 +8,13 @@ class ReservationHotelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return 
     Container(
-      height: 250,
+      height: 500,
       child: StreamBuilder(
       stream: FirebaseFirestore.instance.collection('reservationHotel').snapshots(),
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
         return ListView.builder(
-           
+           shrinkWrap: true,
              itemCount: loadCar.length,
              itemBuilder: (ctx, index) {
               final hot = loadCar[index].data();

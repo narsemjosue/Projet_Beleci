@@ -38,11 +38,11 @@ class CarScreen extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Styles.primaryColor,
-                          offset: Offset(4.0, 4.0),
+                          offset: const Offset(4.0, 4.0),
                           blurRadius: 15,
                           spreadRadius: 1
                         ),
-                         BoxShadow(
+                         const BoxShadow(
                           color: Colors.white,
                           offset: Offset(-4.0, -4.0),
                           blurRadius: 15,
