@@ -13,6 +13,9 @@ class ReservationCarScreen extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection('reservationCar').snapshots(),
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
+        if(carSnapshots.data!.docs.isEmpty){
+          return Center(child: Text('Pas de reservation de véhicule en cours'),);
+        }
         return ListView.builder(
            shrinkWrap: true,
              itemCount: loadCar.length,
@@ -24,7 +27,13 @@ class ReservationCarScreen extends StatelessWidget {
               children: [
                 Dismissible(
                  onDismissed: (d){
-                  print(hot['datef']);
+                  print(loadCar[index].id);
+                  FirebaseFirestore.instance
+                  .collection('reservationCar')
+                  .doc(loadCar[index].id).delete();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('supprimer'))
+                   );
                  },
                 key: GlobalKey(),
                 child: Container(

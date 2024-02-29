@@ -23,7 +23,7 @@ class _AddScreenCarState extends State<AddScreenCar> {
   var _isAutheticating = false;
   bool ch2 = false;
   bool ch3 = false;
-  void _submit(){
+  void _addCar() async{
      setState(() {
       _isAutheticating = true;
     });
@@ -34,10 +34,12 @@ class _AddScreenCarState extends State<AddScreenCar> {
        final storageRef = FirebaseStorage.instance
             .ref()
             .child('user_images')
-            .child(_selectedImage.toString()+'.jpg');
+            .child('${_enteredMatricule+_enteredMark}.jpg');
              storageRef.putFile(_selectedImage!);
-            final imageUrl =  storageRef.getDownloadURL();
-      
+            final imageUrl = await storageRef.getDownloadURL();
+       print('imagnne  $imageUrl');
+        print('imagen  $imageUrl');
+         print('image  $imageUrl');
          FirebaseFirestore.instance.collection('car').add({
           'idPaterner': user.uid,
           'matricule': _enteredMatricule,
@@ -47,13 +49,14 @@ class _AddScreenCarState extends State<AddScreenCar> {
           'gprs':ch2,
           'assurance':ch3,
         });
-      
+      print('image  ${imageUrl}');
        
        Navigator.of(context).pop();
    
     }
     
 print('tapped');
+
 
   }
   
@@ -164,7 +167,7 @@ print('tapped');
                             ElevatedButton(
                                 onPressed:(){
                                   setState((){
-                                  _submit();
+                                  _addCar();
                                 });
                                 },
                                 style: ElevatedButton.styleFrom(

@@ -13,6 +13,9 @@ class ReservationHotelScreen extends StatelessWidget {
       stream: FirebaseFirestore.instance.collection('reservationHotel').snapshots(),
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
+        if(carSnapshots.data!.docs.isEmpty){
+          return Center(child: Text('Pas de reservation en cours'),);
+        }
         return ListView.builder(
            shrinkWrap: true,
              itemCount: loadCar.length,
@@ -24,6 +27,13 @@ class ReservationHotelScreen extends StatelessWidget {
           children: [
             Dismissible(
                 onDismissed: (d){
+                  print(loadCar[index].id);
+                  FirebaseFirestore.instance
+                  .collection('reservationHotel')
+                  .doc(loadCar[index].id).delete();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Reservation annulée', style: TextStyle(color: Colors.white),))
+                   );
                 },
                 key: GlobalKey(),
                 child: Container(

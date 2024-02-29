@@ -27,7 +27,7 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
   File? _selectedImage; 
   var _isAutheticating = false;
 
-  void _submit(){
+  void _addHotel() async{
     // setState(() {
     //   _isAutheticating = true;
     // });
@@ -38,9 +38,9 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
        final storageRef = FirebaseStorage.instance
             .ref()
             .child('user_images')
-            .child(_selectedImage.toString()+'.jpg');
+            .child('${_enteredName+_localisation+type}.jpg');
              storageRef.putFile(_selectedImage!);
-            final imageUrl =  storageRef.getDownloadURL();
+            final imageUrl =  await storageRef.getDownloadURL();
       
          FirebaseFirestore.instance.collection('hotel').add({
           'idPaterner': user.uid,
@@ -235,7 +235,7 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
                             ElevatedButton(
                                 onPressed:(){
                                   setState((){
-                                  _submit();
+                                  _addHotel();
                                 });
                                 },
                                 style: ElevatedButton.styleFrom(

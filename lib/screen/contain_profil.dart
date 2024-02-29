@@ -76,7 +76,7 @@ class _ContainProfilState extends State<ContainProfil> {
                 decoration: BoxDecoration(
                     color: Styles.bgColor,
                     borderRadius: BorderRadius.circular(100),
-                    image: DecorationImage(image:NetworkImage(imageurl), fit: BoxFit.contain ),
+                    image: DecorationImage(image:NetworkImage("https://lh3.googleusercontent.com/a/ACg8ocL1un_-8F70ubiKdb0uAwa2zkoH7TU0X8Zn0T5uXP02XQ=s288-c-no"), fit: BoxFit.contain ),
                     ),
               ),
               const SizedBox(height: 30,),

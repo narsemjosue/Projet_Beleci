@@ -75,14 +75,14 @@ class CarScreen extends StatelessWidget {
                             ),
                             Text(hot["marque"],  style: Styles.headLineStyle2.copyWith(color: Styles.kakiColor),),
                             const SizedBox( height: 5,),
-                            Text(
-                              hot['typeCar'] ,
-                              style: Styles.headLineStyle3.copyWith(
-                                  color:const Color.fromARGB(255, 255, 255, 255)),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
+                            // Text(
+                            //   hot['typeCar'] ,
+                            //   style: Styles.headLineStyle3.copyWith(
+                            //       color:const Color.fromARGB(255, 255, 255, 255)),
+                            // ),
+                            // const SizedBox(
+                            //   height: 8,
+                            // ),
                             Text(
                               "${hot['prix']}\$/Day",
                            

@@ -44,7 +44,7 @@ class _DetailCarState extends State<DetailCar> {
     final pickedDate = await showDatePicker(
         context: context,
         initialDate: now,
-        firstDate: DateTime(_selectedDateStart!.day + 1),
+        firstDate:now,
         lastDate: lastDate);
     setState(() {
       _selectedDateEnd = pickedDate;
