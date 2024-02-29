@@ -14,7 +14,7 @@ class ReservationHotelScreen extends StatelessWidget {
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
         if(carSnapshots.data!.docs.isEmpty){
-          return Center(child: Text('Pas de reservation en cours'),);
+          return Center(child: Text('Pas de reservation d\'hebergement en cours'),);
         }
         return ListView.builder(
            shrinkWrap: true,
