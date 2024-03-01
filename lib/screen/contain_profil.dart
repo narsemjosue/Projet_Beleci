@@ -17,15 +17,17 @@ class _ContainProfilState extends State<ContainProfil> {
 
   @override
   Widget build(BuildContext context) {
-    final authenticatedUser = FirebaseAuth.instance.currentUser!.uid;
     String imageurl = '';
-
+    String nom = '';
+     String id = FirebaseAuth.instance.currentUser!.uid;
+   var user = FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(id).get();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Styles.bgColor,
           title: Container(
             height: 50,
-            color: Colors.amber,
             child: StreamBuilder(
             
                   stream: FirebaseFirestore.instance.collection('users').snapshots(),
@@ -35,7 +37,7 @@ class _ContainProfilState extends State<ContainProfil> {
                itemCount: loadCar.length,
                itemBuilder: (ctx, index) {
                 final hot = loadCar[index].data();
-                if(hot['idUser'] == authenticatedUser){
+                if(hot['idUser'] == id){
                   imageurl = hot['image_url'];
                   // print(hot['image_url']);
                  return Text(hot['username'],style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
@@ -76,7 +78,7 @@ class _ContainProfilState extends State<ContainProfil> {
                 decoration: BoxDecoration(
                     color: Styles.bgColor,
                     borderRadius: BorderRadius.circular(100),
-                    image: DecorationImage(image:NetworkImage("https://lh3.googleusercontent.com/a/ACg8ocL1un_-8F70ubiKdb0uAwa2zkoH7TU0X8Zn0T5uXP02XQ=s288-c-no"), fit: BoxFit.contain ),
+                    image: DecorationImage(image:NetworkImage(imageurl), fit: BoxFit.contain ),
                     ),
               ),
               const SizedBox(height: 30,),

@@ -54,8 +54,8 @@ class _AuthScreenState extends State<AuthScreen> {
             final imageUrl = await storageRef.getDownloadURL();
 
             FirebaseFirestore.instance.
-            collection('users').
-            add({
+            collection('users').doc(userCredentials.user!.uid)
+            .set({
               'idUser':userCredentials.user!.uid,
               'username': _enteredUsername,
               'email': _enteredEmail,
