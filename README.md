@@ -7,9 +7,9 @@ Ces instructions vous permettront de pouvoir executer ce projet sur votre machin
 ### Prérequis
 Pour exécuter ce projet, vous aurez besoin des éléments suivants :
 
-Flutter SDK (Version 2.10.0 ou ultérieure)
-Dart SDK (Version correspondant à Flutter)
-Un éditeur de texte ou une IDE (VSCode, Android Studio, IntelliJ, etc.)
+Flutter SDK (Version 2.10.0 ou ultérieure)<br>
+Dart SDK (Version correspondant à Flutter)<br>
+Un éditeur de texte ou une IDE (VSCode, Android Studio, IntelliJ, etc.)<br>
 
 ### Installation
 1- Cloner le depot github: <br>
