@@ -1,16 +1,25 @@
-# reservia
+# RESERVIA
 
-A new Flutter project.
 
-## Getting Started
+## Commencer
+Ces instructions vous permettront de pouvoir executer ce projet sur votre machine locale afin de developper si besoin.
 
-This project is a starting point for a Flutter application.
+### Prérequis
+Pour exécuter ce projet, vous aurez besoin des éléments suivants :
 
-A few resources to get you started if this is your first Flutter project:
+Flutter SDK (Version 2.10.0 ou ultérieure)
+Dart SDK (Version correspondant à Flutter)
+Un éditeur de texte ou une IDE (VSCode, Android Studio, IntelliJ, etc.)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
+1- Cloner le depot github: <br>
+    https://github.com/narsemjosue/reservia.git<br>
+2- Acceder au repertoire<br>
+    cd ./reservia<br>
+3- Installer les dependances<br>
+    flutter pub get<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Lancer l'application
+    flutter run
+
+
