@@ -26,13 +26,12 @@ class _AddScreenState extends State<AddScreen> {
                                   const SizedBox(height: 100,),
                                   Text(!_isHotel
                                             ? 'Ajouter un véhicule.'
-                                            : 'Ajouter un hébergement.', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),),
+                                            : 'Ajouter un hébergement.', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w400),),
                                  
                                   if(_isHotel)
-                                    AddScreenHotel(),
+                                    const AddScreenHotel(),
                                   if(!_isHotel)
-                                    AddScreenCar(),
-              
+                                    const AddScreenCar(),
                                     TextButton(
                                         onPressed: () {
                                           setState(() {

@@ -14,7 +14,7 @@ class ReservationCarScreen extends StatelessWidget {
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
         if(carSnapshots.data!.docs.isEmpty){
-          return Center(child: Text('Pas de reservation de véhicule en cours'),);
+          return const Center(child: Text('Pas de reservation de véhicule en cours'),);
         }
         return ListView.builder(
            shrinkWrap: true,
@@ -27,12 +27,12 @@ class ReservationCarScreen extends StatelessWidget {
               children: [
                 Dismissible(
                  onDismissed: (d){
-                  print(loadCar[index].id);
+                 
                   FirebaseFirestore.instance
                   .collection('reservationCar')
                   .doc(loadCar[index].id).delete();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('supprimer'))
+                    const SnackBar(content: Text('supprimer'))
                    );
                  },
                 key: GlobalKey(),
@@ -65,7 +65,7 @@ class ReservationCarScreen extends StatelessWidget {
                             children: [
                               Text(hot['marque'].toString(),style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                               const Text("" ,style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-                              Text('12-2-2024',style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+                              const Text('12-2-2024',style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
                               Text('${hot['prix']} \$',style:const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),textAlign: TextAlign.start,),
                             ],
                           )

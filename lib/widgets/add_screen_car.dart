@@ -37,9 +37,7 @@ class _AddScreenCarState extends State<AddScreenCar> {
             .child('${_enteredMatricule+_enteredMark}.jpg');
              storageRef.putFile(_selectedImage!);
             final imageUrl = await storageRef.getDownloadURL();
-       print('imagnne  $imageUrl');
-        print('imagen  $imageUrl');
-         print('image  $imageUrl');
+    
          FirebaseFirestore.instance.collection('car').add({
           'idPaterner': user.uid,
           'matricule': _enteredMatricule,
@@ -49,14 +47,9 @@ class _AddScreenCarState extends State<AddScreenCar> {
           'gprs':ch2,
           'assurance':ch3,
         });
-      print('image  ${imageUrl}');
-       
+      
        Navigator.of(context).pop();
-   
     }
-    
-print('tapped');
-
 
   }
   
@@ -145,13 +138,13 @@ print('tapped');
                             Row(
                           children: [
                         
-                         Text("GPRS"),
+                         const Text("GPRS"),
                           Checkbox(value: ch2, onChanged: (val){
                           setState(() {
                             ch2 = val!;
                           });
                          }),
-                         Text("Assurance",),
+                         const Text("Assurance",),
                           Checkbox(value: ch3, onChanged: (val){
                           setState(() {
                             ch3 = val!;

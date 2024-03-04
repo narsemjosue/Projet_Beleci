@@ -3,7 +3,6 @@ import 'package:reservia/screen/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:reservia/screen/home_screen.dart';
 import 'package:reservia/screen/reservation_screen.dart';
-import 'package:reservia/screen/search_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});

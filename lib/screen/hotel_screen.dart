@@ -60,7 +60,7 @@ const HotelScreen({super.key,});
                             Text(
                               hot['type'] ,
                               style: Styles.headLineStyle3.copyWith(
-                                  color: Color.fromARGB(255, 255, 255, 255)),
+                                  color: const Color.fromARGB(255, 255, 255, 255)),
                             ),
                             const SizedBox(
                               height: 8,

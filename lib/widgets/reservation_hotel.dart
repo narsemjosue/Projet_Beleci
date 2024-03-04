@@ -7,14 +7,14 @@ class ReservationHotelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
-    Container(
+    SizedBox(
       height: 500,
       child: StreamBuilder(
       stream: FirebaseFirestore.instance.collection('reservationHotel').snapshots(),
       builder: (ctx, carSnapshots) {
         final loadCar = carSnapshots.data!.docs;
         if(carSnapshots.data!.docs.isEmpty){
-          return Center(child: Text('Pas de reservation d\'hebergement en cours'),);
+          return const Center(child: Text('Pas de reservation d\'hebergement en cours'),);
         }
         return ListView.builder(
            shrinkWrap: true,
@@ -27,7 +27,6 @@ class ReservationHotelScreen extends StatelessWidget {
           children: [
             Dismissible(
                 onDismissed: (d){
-                  print(loadCar[index].id);
                   FirebaseFirestore.instance
                   .collection('reservationHotel')
                   .doc(loadCar[index].id).delete();
@@ -64,10 +63,10 @@ class ReservationHotelScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(hot['nom'].toString(),style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                              Text("" ,style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-                              Text('',style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
-                              Text("15000f/jour",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
+                              Text(hot['nom'].toString(),style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                              const Text("" ,style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+                              const Text('',style:TextStyle(fontSize: 15, fontWeight: FontWeight.w400),),
+                              const Text("15000f/jour",style:TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
                             ],
                           )
                         ] 

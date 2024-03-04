@@ -13,49 +13,41 @@ class ContainProfil extends StatefulWidget {
 }
 
 class _ContainProfilState extends State<ContainProfil> {
+
+  Map <String, dynamic> user = {} ;
+
+  void getUser() async {
+String identifiant = FirebaseAuth.instance.currentUser!.uid;
+    
+       await FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(identifiant).get().then((value){
+                      user = value.data()!;
+                  });
+  }
+  String nom = '';
+    String image = '';
+  @override
+  void initState(){
+    // TODO: implement initState
+    super.initState();
+    getUser();
+     nom = user['username'];
+     image = user['image_url'];
+    
+  }
  
 
   @override
-  Widget build(BuildContext context) {
-    String imageurl = '';
-    String nom = '';
-     String id = FirebaseAuth.instance.currentUser!.uid;
-   var user = FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(id).get();
+  Widget build(BuildContext context) {              
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Styles.bgColor,
-          title: Container(
-            height: 50,
-            child: StreamBuilder(
-            
-                  stream: FirebaseFirestore.instance.collection('users').snapshots(),
-                  builder: (ctx, carSnapshots) {
-                    final loadCar = carSnapshots.data!.docs;
-                    return ListView.builder(
-               itemCount: loadCar.length,
-               itemBuilder: (ctx, index) {
-                final hot = loadCar[index].data();
-                if(hot['idUser'] == id){
-                  imageurl = hot['image_url'];
-                  // print(hot['image_url']);
-                 return Text(hot['username'],style:const TextStyle(fontSize: 20, fontWeight: FontWeight.bold));
-                }
-                return null;
-              
-                }
-                
-                
-                    );}
-                    
-                    ),
-          ),
+          title: Text(nom),
           actions: [
             IconButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
-                  // print(authenticatedUser.uid);
                 },
                 icon: Icon(
                   Icons.exit_to_app,
@@ -78,7 +70,7 @@ class _ContainProfilState extends State<ContainProfil> {
                 decoration: BoxDecoration(
                     color: Styles.bgColor,
                     borderRadius: BorderRadius.circular(100),
-                    image: DecorationImage(image:NetworkImage(imageurl), fit: BoxFit.contain ),
+                    image: DecorationImage(image:NetworkImage(image.toString()), fit: BoxFit.cover ),
                     ),
               ),
               const SizedBox(height: 30,),
@@ -127,14 +119,16 @@ class _ContainProfilState extends State<ContainProfil> {
                 Container(
                   height: 1,
                   color: Colors.grey,
-                ), ListTile(title: const Text("Ajouter un Véhicule / Hébergement"),
-                leading: const Icon(Icons.add),
-                onTap:  (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                  return const AddScreen();
-                }));
-              },
-                ),
+                ), 
+                if(user['username']=='Admin')
+                  ListTile(title: const Text("Ajouter un Véhicule / Hébergement"),
+                  leading: const Icon(Icons.add),
+                  onTap:  (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    return const AddScreen();
+                  }));
+                  },
+                  ),
                 Container(
                   height: 1,
                   color: Colors.grey,

@@ -13,7 +13,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Styles.bgColor,
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         children: [
           const SizedBox(height: 40,),
           Text('What are \n you looking for?', style: Styles.headLineStyle1.copyWith(fontSize: 35),),
@@ -21,32 +21,32 @@ class SearchScreen extends StatelessWidget {
           FittedBox(
             child: Container(
               padding: const EdgeInsets.all(3.5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xFFF4F6FD),
+              ),
               child: Row(
                 children: [
                   /* airline ticket*/
                   Container(
                     width: size.width*.44,
-                    padding: EdgeInsets.symmetric(vertical: 7),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    decoration: const BoxDecoration(
                     borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
                     color:  Colors.white,
                   ),
-                    child: Center(child: Text("Airline ticket")),
+                    child: const  Center(child: Text("Airline ticket")),
                   ),
                    Container(
                     width: size.width*.44,
-                    padding: EdgeInsets.symmetric(vertical: 7),
-                    decoration: BoxDecoration(
+                    padding:const EdgeInsets.symmetric(vertical: 7),
+                    decoration: const BoxDecoration(
                     borderRadius: BorderRadius.horizontal(right: Radius.circular(50)),
                     color:  Colors.transparent,
                     ),
-                    child: Center(child: Text("Hotel")),
+                    child: const Center(child: Text("Hotel")),
                   ),
                 ],
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xFFF4F6FD),
               ),
             ),
           ),
@@ -136,7 +136,7 @@ class SearchScreen extends StatelessWidget {
                     right: -45,
                     top: -40,
                     child: Container(
-                      padding: EdgeInsets.all(30),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(width: 18, color: const Color(0xFF189999)),

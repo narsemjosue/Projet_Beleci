@@ -182,7 +182,7 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
                                 type = value!;
                               });
                            }),
-                           Text('Appartement meublé')
+                           const Text('Appartement meublé')
                           ],
                          ),
                           Row(
@@ -192,7 +192,7 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
                                 type = value!;
                               });
                            }),
-                             Text('Maison de vacance/villa')
+                             const Text('Maison de vacance/villa')
                           ],
                          ),
                           Row(
@@ -202,24 +202,24 @@ class _AddScreenHotelState extends State<AddScreenHotel> {
                                 type = value!;
                               });
                            }),
-                             Text("Hotel, chambre d'hôte")
+                             const Text("Hotel, chambre d'hôte")
                           ],
                          ),
                          Row(
                           children: [
-                          Text("Climatisation"),
+                          const Text("Climatisation"),
                           Checkbox(value: ch1, onChanged: (val){
                           setState(() {
                             ch1 = val!;
                           });
                          }),
-                         Text("Internet"),
+                        const  Text("Internet"),
                           Checkbox(value: ch2, onChanged: (val){
                           setState(() {
                             ch2 = val!;
                           });
                          }),
-                         Text("TV"),
+                         const Text("TV"),
                           Checkbox(value: ch3, onChanged: (val){
                           setState(() {
                             ch3 = val!;
