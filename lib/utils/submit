@@ -1,0 +1,67 @@
+void _submit() {
+    print('tapped');
+
+    if (_isHotel) {
+      final _messageController = TextEditingController();
+
+      @override
+      void dispose() {
+        _messageController.dispose();
+        super.dispose();
+      }
+
+      void submit()  {
+        // final enteredMessage = _messageController.text;
+        // if (enteredMessage.trim().isEmpty) {
+        //   return;
+        // }
+
+        final user = FirebaseAuth.instance.currentUser!;
+        final userData =  FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        FirebaseFirestore.instance.collection('hotel').add({
+          'idPaterner': user.uid,
+          'nom': 'enteredMessage',
+          'prix': Timestamp.now(),
+          'etoile': "userData.data()!['username']",
+          'type': "userData.data()!['image_url']",
+        });
+
+        _messageController.clear();
+      }
+    } else {
+      final _messageController = TextEditingController();
+
+      @override
+      void dispose() {
+        _messageController.dispose();
+        super.dispose();
+      }
+
+      void submit() async {
+        final enteredMessage = _messageController.text;
+        if (enteredMessage.trim().isEmpty) {
+          return;
+        }
+
+        final user = FirebaseAuth.instance.currentUser!;
+        final userData = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .get();
+
+        FirebaseFirestore.instance.collection('car').add({
+          'matricule': enteredMessage,
+          'prix': Timestamp.now(),
+          'marque': user.uid,
+          'carburant': userData.data()!['username'],
+          'type': userData.data()!['image_url'],
+        });
+
+        _messageController.clear();
+      }
+    }
+  }
