@@ -55,13 +55,13 @@ const HotelScreen({super.key,});
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(hot["nom"],  style: Styles.headLineStyle2.copyWith(color: Styles.kakiColor),),
+                            Text(hot["nom"],  style: Styles.headLineStyle2.copyWith(color: Styles.kakiColor, fontSize: 18),),
                             const SizedBox( height: 5,),
-                            Text(
-                              hot['type'] ,
-                              style: Styles.headLineStyle3.copyWith(
-                                  color: const Color.fromARGB(255, 255, 255, 255)),
-                            ),
+                            // Text(
+                            //   hot['type'] ,
+                            //   style: Styles.headLineStyle3.copyWith(
+                            //       color: const Color.fromARGB(255, 255, 255, 255)),
+                            // ),
                             const SizedBox(
                               height: 8,
                             ),
@@ -69,7 +69,7 @@ const HotelScreen({super.key,});
                               "${hot['prix']}\$/Night",
                            
                               style: Styles.headLineStyle2
-                                  .copyWith(color: Styles.kakiColor),
+                                  .copyWith(color: Styles.kakiColor, fontSize: 18),
                             ),
                           ],
                         ),

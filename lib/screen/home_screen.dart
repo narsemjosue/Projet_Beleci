@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:reservia/screen/car_screen.dart';
 import 'package:reservia/screen/hotel_screen.dart';
 import 'package:reservia/utils/app_style.dart';
-import 'package:reservia/widgets/double_text_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                      Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text('Good morning', style: Styles.headLineStyle3,),
+                        //  Text('Good morning', style: Styles.headLineStyle3,),
                          const SizedBox(height: 5,),
                          Text('Reservia.com', style: Styles.headLineStyle1,),
                       ],
@@ -35,9 +34,10 @@ class HomeScreen extends StatelessWidget {
                       width: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        image: const DecorationImage(image: AssetImage('assets/images/img_0.png',),
-                          fit: BoxFit.cover
-                        ),
+                        // image: const DecorationImage(
+                        //   // image: AssetImage('assets/images/img_0.png',),
+                        //   // fit: BoxFit.cover
+                        // ),
                       ),
                     )
                   ]
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 15,),
               Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const AppDoubleTextWidget(bigText: 'Hotels', smalText: 'View all'),
+              //       child: const AppDoubleTextWidget(bigText: 'Hotels', smalText: 'View all'),
               ),
               const SizedBox(height: 15,),
               const SizedBox(
@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                     child: HotelScreen()),
                     Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                     child: const AppDoubleTextWidget(bigText: 'Cars', smalText: 'View all'),
+                    //  child: const AppDoubleTextWidget(bigText: 'Cars', smalText: 'View all'),
                ),
                const SizedBox(height: 15,),
                      const SizedBox(

@@ -32,8 +32,7 @@ String identifiant = FirebaseAuth.instance.currentUser!.uid;
     // TODO: implement initState
     super.initState();
     getUser();
-     nom = user['username'];
-     image = user['image_url'];
+    
     
   }
  
@@ -43,7 +42,7 @@ String identifiant = FirebaseAuth.instance.currentUser!.uid;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Styles.bgColor,
-          title: Text(nom),
+          title: Text("Connecté(e)"),
           actions: [
             IconButton(
                 onPressed: () {
@@ -70,7 +69,7 @@ String identifiant = FirebaseAuth.instance.currentUser!.uid;
                 decoration: BoxDecoration(
                     color: Styles.bgColor,
                     borderRadius: BorderRadius.circular(100),
-                    image: DecorationImage(image:NetworkImage(image.toString()), fit: BoxFit.cover ),
+                    image: DecorationImage(image:NetworkImage('image'), fit: BoxFit.cover ),
                     ),
               ),
               const SizedBox(height: 30,),
@@ -120,7 +119,7 @@ String identifiant = FirebaseAuth.instance.currentUser!.uid;
                   height: 1,
                   color: Colors.grey,
                 ), 
-                if(user['username']=='Admin')
+              
                   ListTile(title: const Text("Ajouter un Véhicule / Hébergement"),
                   leading: const Icon(Icons.add),
                   onTap:  (){
